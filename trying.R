@@ -6,11 +6,10 @@
 # colNum= 11: heart attack, 17: heart failure, 23: pneumonia
 # can try other columns to compare, but never tested on columns other than 11,17,23
 #
-# problem when passing multiple numbers to parameter: calculation is fine but all plots have xlables printed overlapped
 
 trying <- function(colNum = 11){
-  data <- read.csv("hospital-data.csv", colClasses = "character")
-  outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+  data <- read.csv("final/hospital-data.csv", colClasses = "character")
+  outcome <- read.csv("final/outcome-of-care-measures.csv", colClasses = "character")
   
   index <- numeric(dim(outcome)[1])
   for(i in 1:dim(outcome)[1]){
@@ -34,16 +33,17 @@ trying <- function(colNum = 11){
     size <- sapply(splitted, function(x){length(which(!is.na(x)))}) # calculate how many hospitals for each ownership types
     #print(size)
     asdf <- tempResult*size
-  
+    
     result <- numeric(3)
     result[1] <- sum(asdf[1:5]) / sum(size[1:5])
     result[2] <- sum(asdf[6]) / sum(size[6])
     result[3] <- sum(asdf[7:9]) / sum(size[7:9])
     # calculate the mean mortality rate into 3 categories. government, proprietary, non-profit
     
+    print(paste("value of column",i,":"))
     print(result)
-  
-    plot(result, xlab="government, proprietary, non-profit ownership type", ylab = paste("value of column",colNum))
-    # currently having problem on plotting multiple mortality rates
+    print(" ")
+    
+    plot(result, xlab="government, proprietary, non-profit ownership type", ylab = paste("value of column",i))
   }
 }
