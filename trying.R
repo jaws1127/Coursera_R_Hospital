@@ -40,6 +40,8 @@ trying <- function(colNum = 11){
     result[2] <- sum(asdf[6]) / sum(size[6])
     result[3] <- sum(asdf[7:9]) / sum(size[7:9])
     # calculate the mean mortality rate into 3 categories. government, proprietary, non-profit
+    
+    print(result)
   
     plot(result, xlab="government, proprietary, non-profit ownership type", ylab = paste("value of column",colNum))
     # currently having problem on plotting multiple mortality rates
